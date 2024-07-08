@@ -13,7 +13,7 @@ build website:
         paths:
             - build
 
-.linter:
+linter:
     image: node:16-alpine
     stage: .pre
     script:
@@ -28,9 +28,9 @@ test website:
         - apk add curl
         - serve -s build &
         - sleep 10
-        - curl http://localhost:3000 | grep Learn GitLab CI
+        - curl http://localhost:3000 | grep "React App"
 
-.unit tests:
+unit tests:
     image: node:16-alpine
     stage: .pre
     script:
