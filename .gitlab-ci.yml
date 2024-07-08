@@ -21,7 +21,7 @@ build website:
         - yarn lint
 
 test website:
-    image: alpine
+    image: node:16-alpine
     stage: test
     script:
 #        - test -f build/index.html
@@ -34,4 +34,3 @@ test website:
         - yarn install
         - yarn test
 
-        
