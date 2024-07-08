@@ -8,7 +8,7 @@ build website:
     script: 
         - yarn install
         - yarn build
-    artifects:
+    artifacts:
         paths:
             - build
 
