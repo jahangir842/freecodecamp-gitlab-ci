@@ -2,6 +2,7 @@ stages:
     - .pre
     - build
     - test
+    - deploy
 
 build website:
     stage: build
@@ -37,3 +38,10 @@ unit tests:
         - yarn install
         - yarn test
 
+deploy to S3:
+    stage: deploy
+    image: 
+        name: amazon/aws-cli
+        entrypoint: [""]
+    script:
+        - aws --version
