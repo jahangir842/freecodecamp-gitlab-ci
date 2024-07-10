@@ -4,5 +4,5 @@ build website:
         - yarn install
         - yarn build
 
-testwebsite:
+testwebsite
         
