@@ -2,6 +2,10 @@ stages:
     - build
     - test
     - deploy
+    - post deploy
+
+variables:
+    APP_BASE_URL: http://jahangir-09072024.s3-website-us-east-1.amazonaws.com
 
 build website:
     stage: build
@@ -37,3 +41,9 @@ deploy to S3:
         - echo "hello S3" >> test.txt
         - echo "$CI_COMMIT_REF_NAME"
         - aws s3 sync build s3://$AWS_S3_BUCKET --delete
+
+production tests:
+    stage: post deploy
+    image: curlimages/curl
+    script:
+        - curl $APP_BASE_URL | grep "React App"
