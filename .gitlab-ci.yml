@@ -37,3 +37,7 @@ deploy to S3:
         - echo "hello S3" >> test.txt
         - echo "$CI_COMMIT_REF_NAME"
         - aws s3 sync build s3://$AWS_S3_BUCKET --delete
+
+
+
+
