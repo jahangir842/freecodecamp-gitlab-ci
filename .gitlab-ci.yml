@@ -45,7 +45,7 @@ deploy to staging:
         - echo "$CI_COMMIT_REF_NAME"
         - aws s3 sync build s3://$AWS_S3_BUCKET_STAGING --delete
 
-staging tests:
+.staging tests:
     stage: test staging
     image: curlimages/curl
     script:
@@ -64,7 +64,7 @@ deploy to production:
         - echo "$CI_COMMIT_REF_NAME"
         - aws s3 sync build s3://$AWS_S3_BUCKET --delete
 
-production tests:
+.production tests:
     stage: test production
     image: curlimages/curl
     script:
