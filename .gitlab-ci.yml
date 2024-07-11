@@ -45,7 +45,6 @@ deploy to staging:
 
 deploy to production:
     stage: deploy production
-    environment: production
     image: 
         name: amazon/aws-cli
         entrypoint: [""]
