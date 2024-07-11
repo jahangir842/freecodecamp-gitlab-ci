@@ -6,10 +6,6 @@ stages:
     - deploy production
     - test production
 
-variables:
-    APP_BASE_URL: http://jahangir-09072024.s3-website-us-east-1.amazonaws.com
-    APP_BASE_URL_STAGING: http://jahangir-09072024-staging.s3-website-us-east-1.amazonaws.com
-
 build website:
     stage: build
     image: node:16-alpine
@@ -34,6 +30,7 @@ test website:
 
 deploy to staging:
     stage: deploy staging
+    environment: staging
     image: 
         name: amazon/aws-cli
         entrypoint: [""]
@@ -43,13 +40,8 @@ deploy to staging:
         - aws --version
         - echo "hello S3" >> test.txt
         - echo "$CI_COMMIT_REF_NAME"
-        - aws s3 sync build s3://$AWS_S3_BUCKET_STAGING --delete
-
-staging tests:
-    stage: test staging
-    image: curlimages/curl
-    script:
-        - curl $APP_BASE_URL_STAGING | grep "React App"
+        - aws s3 sync build s3://$AWS_S3_BUCKET --delete
+        - curl $CI_ENVIRONMENT_URL | grep "React App"
 
 deploy to production:
     stage: deploy production
@@ -63,9 +55,4 @@ deploy to production:
         - echo "hello S3" >> test.txt
         - echo "$CI_COMMIT_REF_NAME"
         - aws s3 sync build s3://$AWS_S3_BUCKET --delete
-
-production tests:
-    stage: test production
-    image: curlimages/curl
-    script:
-        - curl $APP_BASE_URL | grep "React App"
+        - curl $CI_ENVIRONMENT_URL | grep "React App"
